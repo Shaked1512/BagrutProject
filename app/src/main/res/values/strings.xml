@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BagrutProject</string>
+    <string name="User">User-name</string>
+    <string name="Pass">Password</string>
+    <string name="btn">Log-in</string>
+    <string name="reg">Register</string>
+    <string name="Welcome">Welcome!</string>
+    <string name="digits">1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM</string>
 </resources>

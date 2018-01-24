@@ -26,7 +26,8 @@
         <activity android:name=".Shaked.ActionPowerDisconnected" />
         <activity android:name=".Shaked.ActionShutDown" />
         <activity android:name=".Shaked.AirplaneMode" />
-        <activity android:name=".Shaked.USBConnected">
+        <activity android:name=".Shaked.USBConnected"/>
+        <activity android:name=".Classes_OF_Eli_De_Shpitz.List_Activity">
         </activity>
     </application>
 

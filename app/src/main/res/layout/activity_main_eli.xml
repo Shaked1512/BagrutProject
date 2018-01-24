@@ -1,9 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.appschool.bagrutproject.MainEli">
+    android:orientation="vertical"
+    android:background="#000"
+    tools:context="com.appschool.bagrutproject.MainActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#fff"
+        android:layout_gravity="center"
+        android:text="@string/User"
+        android:textSize="45sp"
+        android:textStyle="italic"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:maxLength="15"
+        android:maxLines="1"
+        android:layout_gravity="center"
+        android:gravity="start"
+        android:textSize="30sp"
+        android:layout_marginTop="30dp"
+        android:textColor="#000"
+        android:digits="@string/digits"
+        android:id="@+id/etUser"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="I"
+            android:textSize="30sp"
+            android:layout_marginRight="20dp"
+            android:background="#fff"
+            android:id="@+id/btnInfo"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="#fff"
+            android:text="@string/Pass"
+            android:textSize="45sp"
+            android:textStyle="italic"
+            />
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="S"
+            android:textSize="30sp"
+            android:layout_marginLeft="20dp"
+            android:background="#fff"
+            android:longClickable="true"
+            android:id="@+id/btnShow"
+            />
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_gravity="center"
+        android:gravity="start"
+        android:maxLength="15"
+        android:maxLines="1"
+        android:textSize="30sp"
+        android:inputType="textPassword"
+        android:layout_marginTop="30dp"
+        android:textColor="#000"
+        android:id="@+id/etPass"
+        />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:textColor="#000"
+        android:text="@string/btn"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:id="@+id/btnLog"
+        />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="@string/reg"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        android:id="@+id/btnReg"
+        />
+
+
+</LinearLayout>
+
