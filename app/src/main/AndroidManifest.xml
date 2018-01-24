@@ -18,7 +18,16 @@
         </activity>
         <activity android:name=".MainIlan" />
         <activity android:name=".MainShaked" />
-        <activity android:name=".MainEli"></activity>
+        <activity android:name=".MainEli"/>
+        <activity android:name=".Shaked.BatteryChanged" />
+        <activity android:name=".Shaked.BatteryLow" />
+        <activity android:name=".Shaked.BatteryOkay" />
+        <activity android:name=".Shaked.ActionPowerConnected" />
+        <activity android:name=".Shaked.ActionPowerDisconnected" />
+        <activity android:name=".Shaked.ActionShutDown" />
+        <activity android:name=".Shaked.AirplaneMode" />
+        <activity android:name=".Shaked.USBConnected">
+        </activity>
     </application>
 
 </manifest>
