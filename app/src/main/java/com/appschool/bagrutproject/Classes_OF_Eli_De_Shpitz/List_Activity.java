@@ -1,12 +1,34 @@
 package com.appschool.bagrutproject.Classes_OF_Eli_De_Shpitz;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.appschool.bagrutproject.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class List_Activity extends AppCompatActivity {
     public static final MediaType String
@@ -14,7 +36,7 @@ public class List_Activity extends AppCompatActivity {
 
     OkHttpClient client = new OkHttpClient();
 
-/*    void post(String url, String string) throws IOException {
+    void post(String url, String string) throws IOException {
         RequestBody body = RequestBody.create(String, string);
         final Request request = new Request.Builder()
                 .url(url)
@@ -39,61 +61,38 @@ public class List_Activity extends AppCompatActivity {
                         Log.d("TAG", responseheaders.name(i)+": "+responseheaders.value(i));
                     }
                     Log.d("TAG","Mazal's DB -----> "+ responseBody.string());
-                    String str1 = responseBody.string();
-                    ArrayList<User> users = convertJsonToArrayList(str1);
-//                    if(users!=null)
-//                    Log.d("TAG", users.toString());
-
+                    String string = responseBody.toString();
+                    List<User> users = convertJsonToArrayList(string);
+                    if(users!=null)
+                        Log.d("TAG", "LIST: "+users.toString());
                 }
             }
         });
     }
 
-    public ArrayList<User> convertJsonToArrayList(String strjon)
+    public List<User> convertJsonToArrayList(String strjon)
     {
         Log.d("TAG", "a");
-
-        ArrayList<User>arrayList=new ArrayList<User>();
-        JSONArray jArray = null;
-        try {
-            Log.d("TAG", "b");
-            jArray = new JSONArray(strjon);
-            Log.d("TAG", "c");
-
-
-            for(int i=0;i<jArray.length();i++)
-            {
-                Log.d("TAG", "d" + i);
-
-                Log.d("asaf","try json"+i);
-                JSONObject json_data = jArray.getJSONObject(i);
-                String name = json_data.getString("name");
-                String password = json_data.getString("password");
-                //String userId = json_data.getString("12");
-                User user= new User(name, password,"12");
-                arrayList.add(user);
-
-            }
-            return arrayList;
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
+        Type UserListType = new TypeToken<List<User>>(){}.getType();
+        Log.d("TAG", "b");
+        List<User> users = new Gson().fromJson(strjon, UserListType);
+        Log.d("TAG", "LIST: "+users.toString());
+        return users;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_);
-        /*String s = getIntent().getStringExtra("List");
+        Log.d("TAG", "Requesting List");
+        String s = getIntent().getStringExtra("List");
         if(s.equals("give list")){
             try {
-                post("https://afternoon-beach-26541.herokuapp.com/getItems", s);
+                post("https://sleepy-springs-37359.herokuapp.com/getItems", s);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
 
 
     }

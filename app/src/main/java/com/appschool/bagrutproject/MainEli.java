@@ -3,6 +3,7 @@ package com.appschool.bagrutproject;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +48,13 @@ public class MainEli extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 Log.d("TAG", "Failed receiving response");
+                MainEli.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        btnLogin.setClickable(true);
+                        btnLogin.setBackgroundColor(Color.WHITE);
+                    }
+                });
             }
 
             @Override
@@ -58,6 +66,7 @@ public class MainEli extends AppCompatActivity {
                     MainEli.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            btnLogin.setClickable(true);
                             etUser.setText("");
                             etPass.setText("");
                             Toast.makeText(MainEli.this, "Logged in successfully"
@@ -73,6 +82,7 @@ public class MainEli extends AppCompatActivity {
                     MainEli.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            btnLogin.setClickable(true);
                             etUser.setText("");
                             etPass.setText("");
                             Toast.makeText(MainEli.this, "Failed tp log in, try different user name or try registering",Toast.LENGTH_LONG).show();
@@ -100,6 +110,7 @@ public class MainEli extends AppCompatActivity {
                 MainEli.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        btnRegister.setClickable(true);
                         Toast.makeText(MainEli.this, "Failed receiving server response. Registration failed!", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -112,6 +123,7 @@ public class MainEli extends AppCompatActivity {
                     MainEli.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            btnRegister.setClickable(true);
                             Toast.makeText(MainEli.this, "Successful registering!", Toast.LENGTH_LONG).show();
                             etUser.setText("");
                             etPass.setText("");
@@ -122,6 +134,7 @@ public class MainEli extends AppCompatActivity {
                     MainEli.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            btnRegister.setClickable(true);
                             Toast.makeText(MainEli.this, "Failed to register", Toast.LENGTH_LONG).show();
                             etUser.setText("");
                             etPass.setText("");
@@ -143,6 +156,7 @@ public class MainEli extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnLogin.setClickable(false);
                 if (etUser.getText().toString().length() != 0 &&
                         etPass.getText().toString().length() != 0) {
                     JSONObject jsonObject = new JSONObject();
@@ -150,13 +164,14 @@ public class MainEli extends AppCompatActivity {
                         jsonObject.put("name", etUser.getText().toString());
                         jsonObject.put("password", etPass.getText().toString());
                         Log.d("TAG", "Json object created ---> " + jsonObject.toString());
-                        post("https://afternoon-beach-26541.herokuapp.com/logIn", jsonObject.toString());
+                        post("https://sleepy-springs-37359.herokuapp.com/logIn", jsonObject.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 } else {
+                    btnLogin.setClickable(true);
                     Toast.makeText(MainEli.this, "Enter all fields!", Toast.LENGTH_LONG).show();
                 }
             }
@@ -165,21 +180,25 @@ public class MainEli extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnRegister.setClickable(false);
                 if (etUser.getText().toString().length() != 0 && etPass.getText().toString().length() != 0) {
                     JSONObject jsonreg = new JSONObject();
                     try {
                         jsonreg.put("name", etUser.getText().toString());
                         jsonreg.put("password", etPass.getText().toString());
                         Log.d("TAG", "Data awaiting server registretion ---> " + jsonreg.toString());
-                        regpost("https://afternoon-beach-26541.herokuapp.com/registerItem", jsonreg.toString());
+                        regpost("https://sleepy-springs-37359.herokuapp.com/registerItem", jsonreg.toString());
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                } else
-                    Toast.makeText(MainEli.this, "Can't reach server...", Toast.LENGTH_LONG).show();
+                } else{
+                    btnRegister.setClickable(true);
+                    Toast.makeText(MainEli.this, "Fill all the fields!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

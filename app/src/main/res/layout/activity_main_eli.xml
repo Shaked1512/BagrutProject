@@ -93,7 +93,7 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="#fff"
+        android:background="@drawable/main_buttons"
         android:textColor="#000"
         android:text="@string/btn"
         android:textSize="30sp"
@@ -106,7 +106,7 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="#fff"
+        android:background="@drawable/main_buttons"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="@string/reg"
