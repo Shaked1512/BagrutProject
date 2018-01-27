@@ -1,5 +1,6 @@
 package com.appschool.bagrutproject.Classes_OF_Eli_De_Shpitz;
 
+import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.util.Log;
 
 import com.appschool.bagrutproject.R;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
@@ -17,6 +19,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +39,7 @@ public class List_Activity extends AppCompatActivity {
 
     OkHttpClient client = new OkHttpClient();
 
-    void post(String url, String string) throws IOException {
+    void post(String url, final String string) throws IOException {
         RequestBody body = RequestBody.create(String, string);
         final Request request = new Request.Builder()
                 .url(url)
@@ -48,7 +51,6 @@ public class List_Activity extends AppCompatActivity {
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 e.printStackTrace();
             }
-
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onResponse(@NonNull Call call,@NonNull Response response) throws IOException {
@@ -60,11 +62,15 @@ public class List_Activity extends AppCompatActivity {
                     for(i = 0, size = responseheaders.size(); i < size; i++){
                         Log.d("TAG", responseheaders.name(i)+": "+responseheaders.value(i));
                     }
-                    Log.d("TAG","Mazal's DB -----> "+ responseBody.string());
-                    String string = responseBody.toString();
-                    List<User> users = convertJsonToArrayList(string);
-                    if(users!=null)
-                        Log.d("TAG", "LIST: "+users.toString());
+ //                   Log.d("TAG","Mazal's DB -----> "+ responseBody.string());
+                    List<User> users = convertJsonToArrayList(responseBody.string());
+                    if(users!=null){
+                        for(int j = 0; j < users.size() ; j++){
+                            int count = j+1;
+                            String countstr = java.lang.String.valueOf(count);
+                            Log.d("TAG","User Number ("+countstr+"): "+ users.get(j).toString());
+                        }
+                    }
                 }
             }
         });
@@ -76,7 +82,6 @@ public class List_Activity extends AppCompatActivity {
         Type UserListType = new TypeToken<List<User>>(){}.getType();
         Log.d("TAG", "b");
         List<User> users = new Gson().fromJson(strjon, UserListType);
-        Log.d("TAG", "LIST: "+users.toString());
         return users;
     }
 

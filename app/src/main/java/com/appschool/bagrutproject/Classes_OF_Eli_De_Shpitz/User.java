@@ -5,10 +5,21 @@ package com.appschool.bagrutproject.Classes_OF_Eli_De_Shpitz;
 public class User {
     private String name;
     private String password;
+    private String created;
 
-    public User(String name, String password) {
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public User(String name, String password, String created) {
         this.name = name;
         this.password = password;
+        this.created = created;
+
     }
 
     public String getName() {
@@ -26,4 +37,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", created='" + created + '\'' +
+                '}';
     }
+}
