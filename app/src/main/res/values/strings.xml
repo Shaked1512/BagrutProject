@@ -1,9 +1,27 @@
 <resources>
     <string name="app_name">BagrutProject</string>
+    <string name="user2">User-name: </string>
+    <string name="pass2">Password: </string>
+    <string name="Fname">First name: </string>
+    <string name="Lname">Last name: </string>
     <string name="User">User-name</string>
     <string name="Pass">Password</string>
     <string name="btn">Log-in</string>
     <string name="reg">Register</string>
     <string name="Welcome">Welcome!</string>
     <string name="digits">1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM</string>
+    <string name="digits_name">qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM</string>
+    <string name="login">User-name info</string>
+    <string name="user_info">Your user name can be written only with numbers and English letters. No
+    special punctuation (.,""-_ and etc). Length of input is limited to 15 characters.
+    </string>
+    <string name="pass">Password info</string>
+    <string name="pass_info">The length of the password is limited to 15 characters. Only spaces can
+     not be written.</string>
+    <string name="btn_understood">OK, I understood :)</string>
+    <string name="title_menu">Info</string>
+    <string name="intro">Welcome to our app. In order to continue you have to enter your
+    user name and password, but if this is your first time entering the app, please consider registering
+    to our app. (If you need additional information about the process you can enter the information tab
+     which is located in the menu to your upper right)</string>
 </resources>

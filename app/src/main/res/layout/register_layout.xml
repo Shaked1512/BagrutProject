@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user2"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            />
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:digits="@string/digits"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:id="@+id/register_user"
+            android:textSize="15sp"
+            android:textColor="#000"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pass2"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            />
+
+        <EditText
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:digits="@string/digits"
+            android:id="@+id/register_pass"
+            android:textSize="15sp"
+            android:inputType="textPassword"
+            android:textColor="#000"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Fname"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            />
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:inputType="text"
+            android:digits="@string/digits_name"
+            android:id="@+id/register_name"
+            android:maxLines="1"
+            android:maxLength="20"
+            android:textSize="15sp"
+            android:textColor="#000"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Lname"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            />
+
+        <EditText
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:digits="@string/digits_name"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:inputType="text"
+            android:id="@+id/register_last"
+            android:textSize="15sp"
+            android:textColor="#000"
+            />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/main_buttons"
+        android:text="@string/reg"
+        android:textSize="30sp"
+        android:id="@+id/btn_reg"
+        />
+
+
+
+</LinearLayout>
