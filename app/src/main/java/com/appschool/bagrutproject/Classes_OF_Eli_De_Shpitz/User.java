@@ -3,9 +3,41 @@ package com.appschool.bagrutproject.Classes_OF_Eli_De_Shpitz;
 
 
 public class User {
-    private String name;
-    private String password;
+    private String username;
+    private String firstname;
+    private String lastname;
     private String created;
+
+    public User(String username, String firstname, String lastname, String created) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.created = created;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
     public String getCreated() {
         return created;
@@ -15,34 +47,12 @@ public class User {
         this.created = created;
     }
 
-    public User(String name, String password, String created) {
-        this.name = name;
-        this.password = password;
-        this.created = created;
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString() {
-        return "{" +
-                "name='" + name + '\'' +
-                ", password='" + password + '\'' +
+        return
+                "username='" + username + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 ", created='" + created + '\'' +
                 '}';
     }

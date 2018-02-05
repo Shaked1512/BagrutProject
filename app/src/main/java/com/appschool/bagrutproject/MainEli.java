@@ -234,11 +234,11 @@ public class MainEli extends AppCompatActivity {
                 if(pass_field.getText().length() != 0 && user_field.getText().length()!=0){
                     JSONObject jsonlog = new JSONObject();
                     try{
-                        jsonlog.put("name", user_field.getText().toString());
+                        jsonlog.put("username", user_field.getText().toString());
                         jsonlog.put("password", pass_field.getText().toString());
                         Log.d("TAG", "Json object created ---> " + jsonlog.toString());
 
-                        post("https://sleepy-springs-37359.herokuapp.com/", jsonlog.toString());
+                        post("https://sleepy-springs-37359.herokuapp.com/logIn", jsonlog.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -272,10 +272,10 @@ public class MainEli extends AppCompatActivity {
                     showProgress();
                     JSONObject jsonreg = new JSONObject();
                     try {
-                        jsonreg.put("name", reguser.getText().toString());
+                        jsonreg.put("username", reguser.getText().toString());
                         jsonreg.put("password", reg_pass.getText().toString());
-                        jsonreg.put("first-name", regname.getText().toString());
-                        jsonreg.put("last-name", regLname.getText().toString());
+                        jsonreg.put("firstname", regname.getText().toString());
+                        jsonreg.put("lastname", regLname.getText().toString());
                         Log.d("TAG", "Data awaiting server registration ---> " + jsonreg.toString());
                         regpost("https://sleepy-springs-37359.herokuapp.com/registerItem", jsonreg.toString());
 

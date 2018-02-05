@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.appschool.bagrutproject.R;
 import com.google.gson.Gson;
@@ -34,6 +35,8 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 public class List_Activity extends AppCompatActivity {
+    ListView listView;
+    UserAdapter userAdapter;
     public static final MediaType String
             = MediaType.parse("application/string; charset=utf-8");
 
@@ -63,14 +66,22 @@ public class List_Activity extends AppCompatActivity {
                         Log.d("TAG", responseheaders.name(i)+": "+responseheaders.value(i));
                     }
  //                   Log.d("TAG","Mazal's DB -----> "+ responseBody.string());
-                    List<User> users = convertJsonToArrayList(responseBody.string());
-                    if(users!=null){
+                    final List<User> users = convertJsonToArrayList(responseBody.string());
+                    /*if(users!=null){
                         for(int j = 0; j < users.size() ; j++){
                             int count = j+1;
                             String countstr = java.lang.String.valueOf(count);
                             Log.d("TAG","User Number ("+countstr+"): "+ users.get(j).toString());
                         }
-                    }
+                    }*/
+                    List_Activity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            userAdapter = new UserAdapter(List_Activity.this,0,0,users);
+                            listView = findViewById(R.id.lv);
+                            listView.setAdapter(userAdapter);
+                        }
+                    });
                 }
             }
         });
@@ -78,9 +89,7 @@ public class List_Activity extends AppCompatActivity {
 
     public List<User> convertJsonToArrayList(String strjon)
     {
-        Log.d("TAG", "a");
         Type UserListType = new TypeToken<List<User>>(){}.getType();
-        Log.d("TAG", "b");
         List<User> users = new Gson().fromJson(strjon, UserListType);
         return users;
     }
