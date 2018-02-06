@@ -5,6 +5,11 @@
     android:orientation="horizontal"
     >
 
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="61dp"
+        android:background="@drawable/user" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

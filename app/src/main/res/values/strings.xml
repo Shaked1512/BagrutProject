@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">BagrutProject</string>
+    <string name="menu_add">Add</string>
+    <string name="profile">Profile</string>
+    <string name="menu_del">Delete</string>
     <string name="user2">User-name: </string>
     <string name="pass2">Password: </string>
     <string name="Fname">First name: </string>

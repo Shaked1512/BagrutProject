@@ -7,7 +7,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.appschool.bagrutproject.R;
 import com.google.gson.Gson;
@@ -67,13 +70,13 @@ public class List_Activity extends AppCompatActivity {
                     }
  //                   Log.d("TAG","Mazal's DB -----> "+ responseBody.string());
                     final List<User> users = convertJsonToArrayList(responseBody.string());
-                    /*if(users!=null){
+                    if(users!=null){
                         for(int j = 0; j < users.size() ; j++){
                             int count = j+1;
                             String countstr = java.lang.String.valueOf(count);
                             Log.d("TAG","User Number ("+countstr+"): "+ users.get(j).toString());
                         }
-                    }*/
+                    }
                     List_Activity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -109,5 +112,21 @@ public class List_Activity extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.contact_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if(id == R.id.action_add || id == R.id.action_delete || id == R.id.action_profile)
+            Toast.makeText(List_Activity.this, "To be continued", Toast.LENGTH_SHORT)
+                    .show();
+        return true;
     }
 }
