@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.appschool.bagrutproject">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -19,7 +20,7 @@
         </activity>
         <activity android:name=".MainIlan" />
         <activity android:name=".MainShaked" />
-        <activity android:name=".MainEli"/>
+        <activity android:name=".MainEli" />
         <activity android:name=".Shaked.BatteryChanged" />
         <activity android:name=".Shaked.BatteryLow" />
         <activity android:name=".Shaked.BatteryOkay" />
@@ -27,9 +28,9 @@
         <activity android:name=".Shaked.ActionPowerDisconnected" />
         <activity android:name=".Shaked.ActionShutDown" />
         <activity android:name=".Shaked.AirplaneMode" />
-        <activity android:name=".Shaked.USBConnected"/>
-        <activity android:name=".Classes_OF_Eli_De_Shpitz.List_Activity">
-        </activity>
+        <activity android:name=".Shaked.USBConnected" />
+        <activity android:name=".Classes_OF_Eli_De_Shpitz.List_Activity"></activity>
+        <activity android:name=".Classes_OF_Eli_De_Shpitz.ChatActivity"></activity>
     </application>
 
 </manifest>

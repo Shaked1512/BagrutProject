@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BagrutProject.iml" filepath="$PROJECT_DIR$/BagrutProject.iml" />
-      <module fileurl="file://C:\Users\Amal\AndroidStudioProjects\BagrutProject\BagrutProject.iml" filepath="C:\Users\Amal\AndroidStudioProjects\BagrutProject\BagrutProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Amal\AndroidStudioProjects\BagrutProject\app\app.iml" filepath="C:\Users\Amal\AndroidStudioProjects\BagrutProject\app\app.iml" />
     </modules>
   </component>
 </project>

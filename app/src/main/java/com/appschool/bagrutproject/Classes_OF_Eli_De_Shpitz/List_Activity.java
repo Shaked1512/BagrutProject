@@ -1,6 +1,7 @@
 package com.appschool.bagrutproject.Classes_OF_Eli_De_Shpitz;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -70,19 +73,26 @@ public class List_Activity extends AppCompatActivity {
                     }
  //                   Log.d("TAG","Mazal's DB -----> "+ responseBody.string());
                     final List<User> users = convertJsonToArrayList(responseBody.string());
-                    if(users!=null){
-                        for(int j = 0; j < users.size() ; j++){
-                            int count = j+1;
-                            String countstr = java.lang.String.valueOf(count);
-                            Log.d("TAG","User Number ("+countstr+"): "+ users.get(j).toString());
-                        }
-                    }
+//                    if(users!=null){
+//                        for(int j = 0; j < users.size() ; j++){
+//                            int count = j+1;
+//                            String countstr = java.lang.String.valueOf(count);
+//                            Log.d("TAG","User Number ("+countstr+"): "+ users.get(j).toString());
+//                        }
+//                    }
                     List_Activity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             userAdapter = new UserAdapter(List_Activity.this,0,0,users);
                             listView = findViewById(R.id.lv);
                             listView.setAdapter(userAdapter);
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    Intent intent = new Intent(List_Activity.this,ChatActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
                         }
                     });
                 }
@@ -112,6 +122,7 @@ public class List_Activity extends AppCompatActivity {
         }
 
 
+
     }
 
     @Override
@@ -129,4 +140,6 @@ public class List_Activity extends AppCompatActivity {
                     .show();
         return true;
     }
+
+
 }
