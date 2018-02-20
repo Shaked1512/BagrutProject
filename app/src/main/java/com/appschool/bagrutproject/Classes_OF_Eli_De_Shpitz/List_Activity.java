@@ -1,12 +1,14 @@
 package com.appschool.bagrutproject.Classes_OF_Eli_De_Shpitz;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -112,6 +114,7 @@ public class List_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_);
         Log.d("TAG", "Requesting List");
+        
         String s = getIntent().getStringExtra("List");
         if(s.equals("give list")){
             try {

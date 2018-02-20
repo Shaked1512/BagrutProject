@@ -3,10 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#39a93b"
     >
 
     <TextView
         android:layout_width="match_parent"
+        android:background="#39a93b"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
@@ -22,7 +24,7 @@
         android:layout_height="wrap_content"
         android:maxLength="15"
         android:maxLines="1"
-        android:background="#000"
+        android:background="#706969"
         android:textSize="30sp"
         android:inputType="text"
         android:id="@+id/user_field"
@@ -49,7 +51,7 @@
         android:layout_height="wrap_content"
         android:maxLength="15"
         android:maxLines="1"
-        android:background="#000"
+        android:background="#706969"
         android:textSize="30sp"
         android:digits="@string/digits"
         android:inputType="textPassword"
