@@ -7,61 +7,45 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text=""
+        android:layout_height="wrap_content"
         android:background="#fff"
-        android:textColor="#000"
-        android:id="@+id/etNametitle"
         android:textSize="30sp"
+        android:text=""
+        android:textColor="#000"
+        android:id="@+id/showreceive"
+        android:maxLines="4"
+        android:gravity="start"
         />
 
-    <ScrollView
-        android:id="@+id/scroll"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/ll_send_message"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:id="@+id/linear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-        </LinearLayout>
-    </ScrollView>
-
     <LinearLayout
-        android:id="@+id/ll_send_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal" >
+        android:background="#fff"
+        android:orientation="horizontal"
+        >
 
         <EditText
-            android:id="@+id/editMessage"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:background="#fff"
-            android:gravity="start"
-            android:textSize="36sp"
-            android:hint="Enter message..."
-            android:inputType="textMultiLine|textCapSentences"
-            android:maxLines="5"
-            android:minLines="1"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:textSize="30dp"
+            android:textColor="#000"
+            android:id="@+id/editmessage"
             android:maxLength="400"
-            android:scrollHorizontally="false"
-            android:textColor="#000" />
+            android:maxLines="4"
+            />
 
         <Button
-            android:id="@+id/buttonSend"
-            android:layout_width="90dp"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
             android:background="@drawable/main_buttons"
-            android:gravity="center"
+            android:text="Send"
             android:textSize="30dp"
-            android:text="send" />
+            android:id="@+id/buttonSend"
+            android:clickable="false"
+            />
+
+
     </LinearLayout>
 
 </RelativeLayout>

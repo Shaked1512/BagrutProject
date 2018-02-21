@@ -83,7 +83,7 @@ public class MainEli extends AppCompatActivity {
                             log_d.dismiss();
                         }
                     });
-                    Intent intent = new Intent(MainEli.this,List_Activity.class).putExtra("List", "give list");
+                    Intent intent = new Intent(MainEli.this,List_Activity.class);
                     startActivity(intent);
 
                 }

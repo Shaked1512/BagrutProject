@@ -1,6 +1,7 @@
 package com.appschool.bagrutproject.Classes_OF_Eli_De_Shpitz;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -13,7 +14,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -43,9 +47,12 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 public class List_Activity extends AppCompatActivity {
-    ListView listView;
+    ListView listView, addlistview;
     UserAdapter userAdapter;
-    public static final MediaType String
+    Dialog Addialog;
+    EditText addText;
+    Button btnSearch;
+    /*public static final MediaType String
             = MediaType.parse("application/string; charset=utf-8");
 
     OkHttpClient client = new OkHttpClient();
@@ -107,24 +114,12 @@ public class List_Activity extends AppCompatActivity {
         Type UserListType = new TypeToken<List<User>>(){}.getType();
         List<User> users = new Gson().fromJson(strjon, UserListType);
         return users;
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_);
-        Log.d("TAG", "Requesting List");
-        
-        String s = getIntent().getStringExtra("List");
-        if(s.equals("give list")){
-            try {
-                post("https://sleepy-springs-37359.herokuapp.com/getItems", s);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-
 
     }
 
@@ -138,11 +133,29 @@ public class List_Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         int id = item.getItemId();
-        if(id == R.id.action_add || id == R.id.action_delete || id == R.id.action_profile)
-            Toast.makeText(List_Activity.this, "To be continued", Toast.LENGTH_SHORT)
-                    .show();
+        if(id == R.id.action_add){
+
+        }
         return true;
     }
 
+    public void createAddDialog(){
+        Addialog = new Dialog(List_Activity.this);
+        Addialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Addialog.setCancelable(true);
+        Addialog.setContentView(R.layout.add_layout);
+        addText = findViewById(R.id.etSearchbar);
+        btnSearch = findViewById(R.id.btnSearch);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(addText.getText().length()>0){
+                    btnSearch.setClickable(true);
+
+                }
+            }
+        });
+
+    }
 
 }
