@@ -7,11 +7,15 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="com.appschool.bagrutproject.MainEli">
+    tools:context="com.appschool.bagrutproject.MainEli"
+    android:background="@drawable/bg_normal">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvDisplay"
-        android:textSize="40sp"/>
+        android:gravity="center"
+        android:textColor="#dc1920"
+        android:textSize="50sp"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

@@ -23,6 +23,7 @@ public class AirplaneMode extends AppCompatActivity {
     TextView tv;
     BroadCastAirplaneMode broadCastAirplaneMode;
     boolean isAirplaneMode = false;
+    NotificationHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,12 @@ public class AirplaneMode extends AppCompatActivity {
         setContentView(R.layout.activity_action_airplane_mode);
 
         tv = (TextView)findViewById(R.id.tvDisplay);
+        helper = new NotificationHelper(this);
         isAirplaneMode = isAirplaneModeOn(this);
         if(isAirplaneMode)
-            tv.setText("on");
+            tv.setText("ON");
         else
-            tv.setText("off");
+            tv.setText("OFF");
         Log.d("something", String.valueOf(isAirplaneMode));
         broadCastAirplaneMode = new BroadCastAirplaneMode();
     }
@@ -43,11 +45,11 @@ public class AirplaneMode extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (isAirplaneMode) {
-                tv.setText("off");
+                tv.setText("OFF");
                 isAirplaneMode = false;
                 MakeNotification(context, "AirplaneMode", "Status", tv.getText().toString());
             } else {
-                tv.setText("on");
+                tv.setText("ON");
                 isAirplaneMode = true;
                 MakeNotification(context, "AirplaneMode", "Status", tv.getText().toString());
             }
@@ -60,9 +62,9 @@ public class AirplaneMode extends AppCompatActivity {
         registerReceiver(broadCastAirplaneMode, new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED));
         isAirplaneMode = isAirplaneModeOn(this);
         if(isAirplaneMode)
-            tv.setText("on");
+            tv.setText("ON");
         else
-            tv.setText("off");
+            tv.setText("OFF");
         EndNotification();
     }
 
@@ -73,18 +75,26 @@ public class AirplaneMode extends AppCompatActivity {
     }
     public void MakeNotification(Context context, String title, String ticker, String text)
     {
-        Intent intent = new Intent(context, MainShaked.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
-        Notification notification = builder
-                .setContentIntent(pendingIntent)
-                .setTicker(ticker)
-                .setWhen(System.currentTimeMillis())
-                .setAutoCancel(true).setContentTitle(title)
-                .setSmallIcon(android.R.drawable.star_on)
-                .setContentText(text).build();
-        notificationManager.notify(1, notification);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Intent intent = new Intent(context, MainShaked.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            Notification.Builder builder1 = helper.getSHAKEDChannelNotification(title, text,pendingIntent, System.currentTimeMillis(), ticker);
+            helper.getManager().notify(1, builder1.build());
+        }
+        else {
+            Intent intent = new Intent(context, MainShaked.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+            Notification notification = builder
+                    .setContentIntent(pendingIntent)
+                    .setTicker(ticker)
+                    .setWhen(System.currentTimeMillis())
+                    .setAutoCancel(true).setContentTitle(title)
+                    .setSmallIcon(android.R.drawable.star_on)
+                    .setContentText(text).build();
+            notificationManager.notify(1, notification);
+        }
     }
     public void EndNotification()
     {

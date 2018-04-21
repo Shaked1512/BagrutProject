@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class BatteryOkay extends AppCompatActivity {
     TextView tv;
     BroadCastLowBattery broadCastLowBattery;
     BroadCastOkayBattery broadCastOkayBattery;
+    NotificationHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class BatteryOkay extends AppCompatActivity {
         setContentView(R.layout.activity_battery_okay);
 
         tv = (TextView)findViewById(R.id.tvDisplay);
+        helper = new NotificationHelper(this);
 
         broadCastLowBattery = new BroadCastLowBattery();
         broadCastOkayBattery = new BroadCastOkayBattery();
@@ -37,7 +40,7 @@ public class BatteryOkay extends AppCompatActivity {
     {
         @Override
         public void onReceive(Context context, Intent intent) {
-            tv.setText("false");
+            tv.setText("FALSE");
             MakeNotification(context, "BatteryOkay", "Status", tv.getText().toString());
         }
     }
@@ -46,7 +49,7 @@ public class BatteryOkay extends AppCompatActivity {
     {
         @Override
         public void onReceive(Context context, Intent intent) {
-            tv.setText("true");
+            tv.setText("TRUE");
             MakeNotification(context, "BatteryOkay", "Status", tv.getText().toString());
         }
     }
@@ -67,18 +70,26 @@ public class BatteryOkay extends AppCompatActivity {
     }
     public void MakeNotification(Context context, String title, String ticker, String text)
     {
-        Intent intent = new Intent(context, MainShaked.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
-        Notification notification = builder
-                .setContentIntent(pendingIntent)
-                .setTicker(ticker)
-                .setWhen(System.currentTimeMillis())
-                .setAutoCancel(true).setContentTitle(title)
-                .setSmallIcon(android.R.drawable.star_on)
-                .setContentText(text).build();
-        notificationManager.notify(1, notification);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Intent intent = new Intent(context, MainShaked.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            Notification.Builder builder1 = helper.getSHAKEDChannelNotification(title, text,pendingIntent, System.currentTimeMillis(), ticker);
+            helper.getManager().notify(1, builder1.build());
+        }
+        else {
+            Intent intent = new Intent(context, MainShaked.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+            Notification notification = builder
+                    .setContentIntent(pendingIntent)
+                    .setTicker(ticker)
+                    .setWhen(System.currentTimeMillis())
+                    .setAutoCancel(true).setContentTitle(title)
+                    .setSmallIcon(android.R.drawable.star_on)
+                    .setContentText(text).build();
+            notificationManager.notify(1, notification);
+        }
     }
     public void EndNotification()
     {

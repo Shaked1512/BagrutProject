@@ -21,7 +21,7 @@ public class ActionShutDown extends AppCompatActivity {
         setContentView(R.layout.activity_action_shut_down);
 
         tv = (TextView)findViewById(R.id.tvDisplay);
-        tv.setText("false");
+        tv.setText("FALSE");
 
         broadCastShutDown = new BroadCastShutDown();
     }
@@ -30,7 +30,7 @@ public class ActionShutDown extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.v("Shaked", "shut down");
-            tv.setText("true");
+            tv.setText("TRUE");
         }
     }
 
