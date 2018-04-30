@@ -7,17 +7,24 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.appschool.bagrutproject.MainShaked;
 import com.appschool.bagrutproject.R;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 public class BatteryLow extends AppCompatActivity {
 
+    ArrayList<Broadcast> broadcasts;
+    BroadcastHelper broadcastHelper;
     TextView tv;
     BroadCastLowBattery broadCastLowBattery;
     BroadCastOkayBattery broadCastOkayBattery;
@@ -34,6 +41,8 @@ public class BatteryLow extends AppCompatActivity {
         broadCastLowBattery = new BroadCastLowBattery();
         broadCastOkayBattery = new BroadCastOkayBattery();
 
+        broadcastHelper = new BroadcastHelper(this);
+
     }
 
     private class BroadCastLowBattery extends BroadcastReceiver
@@ -42,6 +51,14 @@ public class BatteryLow extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             tv.setText("TRUE");
             MakeNotification(context, "BatteryLow", "Status", tv.getText().toString());
+
+            Broadcast br = new Broadcast("BatteryLow", "Battery low changed to " + tv.getText() + ".", String.valueOf(Calendar.getInstance().getTime()));
+            broadcastHelper.open();
+            br = broadcastHelper.createBroadcast2(br);
+            broadcasts = broadcastHelper.getAllBroadcasts();
+            Log.d("data1", br.toString());
+            Log.d("data1", broadcasts.toString());
+            broadcastHelper.close();
         }
     }
 
@@ -51,6 +68,14 @@ public class BatteryLow extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             tv.setText("FALSE");
             MakeNotification(context, "BatteryLow", "Status", tv.getText().toString());
+
+            Broadcast br = new Broadcast("BatteryLow", "Battery low changed to " + tv.getText() + ".", String.valueOf(Calendar.getInstance().getTime()));
+            broadcastHelper.open();
+            br = broadcastHelper.createBroadcast2(br);
+            broadcasts = broadcastHelper.getAllBroadcasts();
+            Log.d("data1", br.toString());
+            Log.d("data1", broadcasts.toString());
+            broadcastHelper.close();
         }
     }
 
@@ -67,6 +92,13 @@ public class BatteryLow extends AppCompatActivity {
         super.onPause();
         unregisterReceiver(broadCastLowBattery);
         unregisterReceiver(broadCastOkayBattery);
+
+        broadcastHelper.open();
+        SharedPreferences prefs = getSharedPreferences("broadcasts_info2", MODE_PRIVATE);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("key1", broadcastHelper.getAllBroadcasts().toString());
+        edit.commit();
+        broadcastHelper.close();
     }
     public void MakeNotification(Context context, String title, String ticker, String text)
     {

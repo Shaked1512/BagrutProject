@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -18,8 +19,13 @@ import android.widget.TextView;
 import com.appschool.bagrutproject.MainShaked;
 import com.appschool.bagrutproject.R;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 public class AirplaneMode extends AppCompatActivity {
 
+    ArrayList<Broadcast> broadcasts;
+    BroadcastHelper broadcastHelper;
     TextView tv;
     BroadCastAirplaneMode broadCastAirplaneMode;
     boolean isAirplaneMode = false;
@@ -39,6 +45,8 @@ public class AirplaneMode extends AppCompatActivity {
             tv.setText("OFF");
         Log.d("something", String.valueOf(isAirplaneMode));
         broadCastAirplaneMode = new BroadCastAirplaneMode();
+
+        broadcastHelper = new BroadcastHelper(this);
     }
     private class BroadCastAirplaneMode extends BroadcastReceiver
     {
@@ -48,10 +56,26 @@ public class AirplaneMode extends AppCompatActivity {
                 tv.setText("OFF");
                 isAirplaneMode = false;
                 MakeNotification(context, "AirplaneMode", "Status", tv.getText().toString());
+
+                Broadcast br = new Broadcast("AirplaneMode", "Airplane mode changed to " + tv.getText() + ".", String.valueOf(Calendar.getInstance().getTime()));
+                broadcastHelper.open();
+                br = broadcastHelper.createBroadcast2(br);
+                broadcasts = broadcastHelper.getAllBroadcasts();
+                Log.d("data1", br.toString());
+                Log.d("data1", broadcasts.toString());
+                broadcastHelper.close();
             } else {
                 tv.setText("ON");
                 isAirplaneMode = true;
                 MakeNotification(context, "AirplaneMode", "Status", tv.getText().toString());
+
+                Broadcast br = new Broadcast("AirplaneMode", "Airplane mode changed to " + tv.getText() + ".", String.valueOf(Calendar.getInstance().getTime()));
+                broadcastHelper.open();
+                br = broadcastHelper.createBroadcast2(br);
+                broadcasts = broadcastHelper.getAllBroadcasts();
+                Log.d("data1", br.toString());
+                Log.d("data1", broadcasts.toString());
+                broadcastHelper.close();
             }
         }
     }
@@ -72,6 +96,13 @@ public class AirplaneMode extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         unregisterReceiver(broadCastAirplaneMode);
+
+        broadcastHelper.open();
+        SharedPreferences prefs = getSharedPreferences("broadcasts_info2", MODE_PRIVATE);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("key1", broadcastHelper.getAllBroadcasts().toString());
+        edit.commit();
+        broadcastHelper.close();
     }
     public void MakeNotification(Context context, String title, String ticker, String text)
     {

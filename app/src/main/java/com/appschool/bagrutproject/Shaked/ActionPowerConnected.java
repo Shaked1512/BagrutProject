@@ -7,17 +7,24 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.appschool.bagrutproject.MainShaked;
 import com.appschool.bagrutproject.R;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 public class ActionPowerConnected extends AppCompatActivity {
 
+    ArrayList<Broadcast> broadcasts;
+    BroadcastHelper broadcastHelper;
     TextView tv;
     BroadCastPowerConnected broadCastPowerConnected;
     BroadCastPowerDisconnected broadCastPowerDisconnected;
@@ -33,6 +40,8 @@ public class ActionPowerConnected extends AppCompatActivity {
 
         broadCastPowerConnected = new BroadCastPowerConnected();
         broadCastPowerDisconnected = new BroadCastPowerDisconnected();
+
+        broadcastHelper = new BroadcastHelper(this);
     }
     private class BroadCastPowerConnected extends BroadcastReceiver
     {
@@ -40,6 +49,14 @@ public class ActionPowerConnected extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             tv.setText("TRUE");
             MakeNotification(context, "ActionPowerConnected", "Status", tv.getText().toString());
+
+            Broadcast br = new Broadcast("ActionPowerConnected", "Action power connected changed to " + tv.getText() + ".", String.valueOf(Calendar.getInstance().getTime()));
+            broadcastHelper.open();
+            br = broadcastHelper.createBroadcast2(br);
+            broadcasts = broadcastHelper.getAllBroadcasts();
+            Log.d("data1", br.toString());
+            Log.d("data1", broadcasts.toString());
+            broadcastHelper.close();
         }
     }
 
@@ -49,6 +66,14 @@ public class ActionPowerConnected extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             tv.setText("FALSE");
             MakeNotification(context, "ActionPowerConnected", "Status", tv.getText().toString());
+
+            Broadcast br = new Broadcast("ActionPowerConnected", "Action power connected changed to " + tv.getText() + ".", String.valueOf(Calendar.getInstance().getTime()));
+            broadcastHelper.open();
+            br = broadcastHelper.createBroadcast2(br);
+            broadcasts = broadcastHelper.getAllBroadcasts();
+            Log.d("data1", br.toString());
+            Log.d("data1", broadcasts.toString());
+            broadcastHelper.close();
         }
     }
 
@@ -65,6 +90,13 @@ public class ActionPowerConnected extends AppCompatActivity {
         super.onPause();
         unregisterReceiver(broadCastPowerConnected);
         unregisterReceiver(broadCastPowerDisconnected);
+
+        broadcastHelper.open();
+        SharedPreferences prefs = getSharedPreferences("broadcasts_info2", MODE_PRIVATE);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("key1", broadcastHelper.getAllBroadcasts().toString());
+        edit.commit();
+        broadcastHelper.close();
     }
     public void MakeNotification(Context context, String title, String ticker, String text)
     {

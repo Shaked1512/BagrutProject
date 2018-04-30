@@ -30,8 +30,9 @@
         <activity android:name=".Shaked.ActionShutDown" />
         <activity android:name=".Shaked.AirplaneMode" />
         <activity android:name=".Shaked.USBConnected" />
-        <activity android:name=".Classes_OF_Eli_De_Shpitz.List_Activity"></activity>
-        <activity android:name=".Classes_OF_Eli_De_Shpitz.ChatActivity"></activity>
+        <activity android:name=".Classes_OF_Eli_De_Shpitz.List_Activity" />
+        <activity android:name=".Classes_OF_Eli_De_Shpitz.ChatActivity" />
+        <activity android:name=".Shaked.BroadcastList"></activity>
     </application>
 
 </manifest>
