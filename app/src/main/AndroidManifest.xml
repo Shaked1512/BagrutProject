@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".Shaked.ActionBootCompleted">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".MainIlan" />
         <activity android:name=".MainShaked" />
         <activity android:name=".MainEli" />
@@ -32,7 +40,7 @@
         <activity android:name=".Shaked.USBConnected" />
         <activity android:name=".Classes_OF_Eli_De_Shpitz.List_Activity" />
         <activity android:name=".Classes_OF_Eli_De_Shpitz.ChatActivity" />
-        <activity android:name=".Shaked.BroadcastList"></activity>
+        <activity android:name=".Shaked.BroadcastList" />
     </application>
 
 </manifest>
